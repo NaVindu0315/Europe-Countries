@@ -1,7 +1,14 @@
+import 'dart:io';
+
 import 'package:europe_countries/Views/Dashboard.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+import 'Services/HTTP_CERT.dart';
+
+void main() async {
+  HttpOverrides.global = MyHttpOverrides();
+  await dotenv.load(fileName: '.env');
   runApp(const MyApp());
 }
 
