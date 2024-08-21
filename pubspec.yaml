@@ -39,9 +39,16 @@ dependencies:
   provider:
   http:
   flutter_dotenv:
+  dio:
+  retrofit:
+  json_annotation:
+  build_runner:
 
 
 dev_dependencies:
+  build_runner:
+  retrofit_generator:
+  json_serializable:
   flutter_test:
     sdk: flutter
 
