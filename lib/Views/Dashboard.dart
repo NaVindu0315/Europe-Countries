@@ -4,6 +4,7 @@ import 'package:europe_countries/Widgets/CountryCard.dart';
 import 'package:flutter/material.dart';
 
 import '../Models/Countries_Model.dart';
+import '../Services/Fetch_Country.dart';
 import '../Widgets/CircularProgress.dart';
 
 class Dashboard extends StatefulWidget {
@@ -24,27 +25,11 @@ class _DashboardState extends State<Dashboard> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Test'),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      fetchData_test();
-                    },
-                    child: Text('Test'),
-                  )
-                ],
-              ),
+              SizedBox(),
               SizedBox(
                 height: 800,
                 child: FutureBuilder(
-                    future: fetchCountries(),
+                    future: fetchCountry2(),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         List<Country> countries =
