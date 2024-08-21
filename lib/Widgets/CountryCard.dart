@@ -1,3 +1,4 @@
+import 'package:europe_countries/Theme/Colors.dart';
 import 'package:flutter/material.dart';
 
 import '../Models/Countries_Model.dart';
@@ -186,28 +187,34 @@ class CountryCard extends StatelessWidget {
                 child: Hero(
                   tag: flagLink,
                   child: Card(
+                    color: Colors.blue[50],
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     elevation: 10.0,
                     child: Container(
                       width: 300,
-                      height: 400,
+                      height: 350,
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Image.network(flagLink,
-                                height: 100, width: 150, fit: BoxFit.cover),
-                            SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.network(flagLink,
+                                    height: 100, width: 150, fit: BoxFit.cover),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
                             Text('Name Common: $nameCommon'),
                             Text('Name Official: $nameOfficial'),
                             Text('Capital: $capital'),
                             Text('Region: $region'),
-                            Text('Language Nno: $languageNno'),
+                            /*   Text('Language Nno: $languageNno'),
                             Text('Language Nob: $languageNob'),
-                            Text('Language Smi: $languageSmi'),
+                            Text('Language Smi: $languageSmi'),*/
                             Text('Population: $population'),
                           ],
                         ),
@@ -227,6 +234,7 @@ class CountryCard extends StatelessWidget {
       child: Hero(
         tag: flagLink,
         child: Card(
+          color: Colors.blue[100],
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -234,7 +242,7 @@ class CountryCard extends StatelessWidget {
               children: [
                 Image.network(flagLink,
                     height: 100, width: 150, fit: BoxFit.cover),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text('$nameCommon, $capital'),
                 Text('Population: $population'),
               ],
