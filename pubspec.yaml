@@ -45,6 +45,7 @@ dependencies:
   build_runner:
 
 
+
 dev_dependencies:
   build_runner:
   retrofit_generator:
@@ -73,6 +74,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - .env
+    - assets/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
