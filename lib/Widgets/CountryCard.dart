@@ -37,7 +37,7 @@ class CountryCard extends StatelessWidget {
                     elevation: 10.0,
                     child: Container(
                       width: 300,
-                      height: 500,
+                      height: 600,
                       child: Column(
                         children: [
                           const SizedBox(height: 10),
