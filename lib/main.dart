@@ -1,12 +1,11 @@
 import 'dart:io';
-
-import 'package:dio/dio.dart';
-import 'package:europe_countries/Views/Dashboard.dart';
+import 'package:europe_countries/providers/Spalsh_Provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 import 'Services/HTTP_CERT.dart';
+import 'Views/Splash_Screen.dart';
 
 void main() async {
   HttpOverrides.global = MyHttpOverrides();
@@ -24,8 +23,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Dashboard(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<SplashState>(create: (_) => SplashState()),
+      ],
+      child: const MaterialApp(
+        home: SplashScreen(),
+      ),
     );
+    ;
   }
 }
