@@ -3,79 +3,13 @@ import 'package:flutter/material.dart';
 
 import '../Models/Countries_Model.dart';
 
-/*
+//widget to display fetched country detail
+
 class CountryCard extends StatelessWidget {
-  final String flagLink;
-  final String nameCommon;
-  final String nameOfficial;
-  final String capital;
-  final String region;
-  final String languageNno;
-  final String languageNob;
-  final String languageSmi;
-  final int population;
+  final Country country;
 
   const CountryCard({
-    required this.flagLink,
-    required this.nameCommon,
-    required this.nameOfficial,
-    required this.capital,
-    required this.region,
-    required this.languageNno,
-    required this.languageNob,
-    required this.languageSmi,
-    required this.population,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.network(flagLink, height: 100, width: 150, fit: BoxFit.cover),
-            SizedBox(height: 10),
-            Text('Name Common: $nameCommon'),
-            Text('Name Official: $nameOfficial'),
-            Text('Capital: $capital'),
-            Text('Region: $region'),
-            Text('Language Nno: $languageNno'),
-            Text('Language Nob: $languageNob'),
-            Text('Language Smi: $languageSmi'),
-            Text('Population: $population'),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-*/
-/*
-class CountryCard extends StatelessWidget {
-  final String flagLink;
-  final String nameCommon;
-  final String nameOfficial;
-  final String capital;
-  final String region;
-  final String languageNno;
-  final String languageNob;
-  final String languageSmi;
-  final int population;
-
-  const CountryCard({
-    required this.flagLink,
-    required this.nameCommon,
-    required this.nameOfficial,
-    required this.capital,
-    required this.region,
-    required this.languageNno,
-    required this.languageNob,
-    required this.languageSmi,
-    required this.population,
+    required this.country,
     Key? key,
   }) : super(key: key);
 
@@ -89,103 +23,12 @@ class CountryCard extends StatelessWidget {
               Animation<double> secondaryAnimation) {
             return SlideTransition(
               position: Tween<Offset>(
-                begin: Offset(0, -1.0),
-                end: Offset.zero,
-              ).animate(animation),
-              child: Hero(
-                tag: flagLink,
-                child: Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image.network(flagLink,
-                            height: 100, width: 150, fit: BoxFit.cover),
-                        SizedBox(height: 10),
-                        Text('Name Common: $nameCommon'),
-                        Text('Name Official: $nameOfficial'),
-                        Text('Capital: $capital'),
-                        Text('Region: $region'),
-                        Text('Language Nno: $languageNno'),
-                        Text('Language Nob: $languageNob'),
-                        Text('Language Smi: $languageSmi'),
-                        Text('Population: $population'),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            );
-          },
-          barrierDismissible: true,
-          barrierLabel: '',
-          barrierColor: Colors.black.withOpacity(0.5),
-          transitionDuration: Duration(milliseconds: 700),
-        );
-      },
-      child: Hero(
-        tag: flagLink,
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.network(flagLink,
-                    height: 100, width: 150, fit: BoxFit.cover),
-                SizedBox(height: 10),
-                Text('$nameCommon, $capital'),
-                Text('Population: $population'),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-*/
-class CountryCard extends StatelessWidget {
-  final String flagLink;
-  final String nameCommon;
-  final String nameOfficial;
-  final String capital;
-  final String region;
-  final String languageNno;
-  final String languageNob;
-  final String languageSmi;
-  final int population;
-
-  const CountryCard({
-    required this.flagLink,
-    required this.nameCommon,
-    required this.nameOfficial,
-    required this.capital,
-    required this.region,
-    required this.languageNno,
-    required this.languageNob,
-    required this.languageSmi,
-    required this.population,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        showGeneralDialog(
-          context: context,
-          pageBuilder: (BuildContext buildContext, Animation<double> animation,
-              Animation<double> secondaryAnimation) {
-            return SlideTransition(
-              position: Tween<Offset>(
-                begin: Offset(0, -1.0),
+                begin: const Offset(0, -1.0),
                 end: Offset.zero,
               ).animate(animation),
               child: Center(
                 child: Hero(
-                  tag: flagLink,
+                  tag: country.flagLink,
                   child: Card(
                     color: Colors.blue[50],
                     shape: RoundedRectangleBorder(
@@ -194,30 +37,170 @@ class CountryCard extends StatelessWidget {
                     elevation: 10.0,
                     child: Container(
                       width: 300,
-                      height: 350,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                      height: 500,
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                country.nameCommon,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22.0),
+                              )
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.network(country.flagLink,
+                                  height: 100, width: 150, fit: BoxFit.cover),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Table(
+                              columnWidths: const {
+                                0: FlexColumnWidth(0.5),
+                                1: FlexColumnWidth(0.5),
+                              },
                               children: [
-                                Image.network(flagLink,
-                                    height: 100, width: 150, fit: BoxFit.cover),
+                                TableRow(children: [
+                                  const TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text('Official Name'),
+                                    ),
+                                  ),
+                                  TableCell(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        country.nameOfficial,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  const TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text('Capital'),
+                                    ),
+                                  ),
+                                  TableCell(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        country.capital,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  const TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text('Region'),
+                                    ),
+                                  ),
+                                  TableCell(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        country.region,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  const TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text('Population'),
+                                    ),
+                                  ),
+                                  TableCell(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        '${country.population},',
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  const TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text('Native Names'),
+                                    ),
+                                  ),
+                                  TableCell(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: country.nativeNames.entries
+                                            .map((entry) {
+                                          return Text(
+                                            '${entry.key}: ${entry.value.common}',
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ),
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  const TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text('Languages'),
+                                    ),
+                                  ),
+                                  TableCell(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: country.languages.entries
+                                            .map((entry) {
+                                          return Text(
+                                            '${entry.key}: ${entry.value.name}',
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ),
+                                  ),
+                                ]),
                               ],
                             ),
-                            const SizedBox(height: 10),
-                            Text('Name Common: $nameCommon'),
-                            Text('Name Official: $nameOfficial'),
-                            Text('Capital: $capital'),
-                            Text('Region: $region'),
-                            /*   Text('Language Nno: $languageNno'),
-                            Text('Language Nob: $languageNob'),
-                            Text('Language Smi: $languageSmi'),*/
-                            Text('Population: $population'),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -228,23 +211,64 @@ class CountryCard extends StatelessWidget {
           barrierDismissible: true,
           barrierLabel: '',
           barrierColor: Colors.black.withOpacity(0.5),
-          transitionDuration: Duration(milliseconds: 700),
+          transitionDuration: const Duration(milliseconds: 700),
         );
       },
+      //main displaying widget here
       child: Hero(
-        tag: flagLink,
+        tag: country.flagLink,
         child: Card(
           color: Colors.blue[100],
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.network(flagLink,
-                    height: 100, width: 150, fit: BoxFit.cover),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.network(country.flagLink,
+                        height: 100, width: 150, fit: BoxFit.cover),
+                  ],
+                ),
                 const SizedBox(height: 10),
-                Text('$nameCommon, $capital'),
-                Text('Population: $population'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Cuntry'),
+                        Text('Capital'),
+                        Text('Population'),
+                      ],
+                    ),
+                    const SizedBox(
+                      width: 10.0,
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          country.nameCommon,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          country.capital,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          '${country.population}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ],
             ),
           ),
