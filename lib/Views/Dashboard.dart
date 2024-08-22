@@ -1,9 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:europe_countries/Services/Countries_Fetch.dart';
-import 'package:europe_countries/Services/Test_Function.dart';
-import 'package:europe_countries/Theme/Colors.dart';
 import 'package:europe_countries/Widgets/CountryCard.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +18,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  //for sorting
   SortBy _sortBy = SortBy.capital;
   @override
   Widget build(BuildContext context) {
@@ -35,9 +33,11 @@ class _DashboardState extends State<Dashboard> {
                 const SizedBox(),
                 SizedBox(
                   height: 1400,
+                  //to fetch and display country list
                   child: FutureBuilder(
                     future: fetchCountry2(),
                     builder: (context, snapshot) {
+                      //while loading
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,6 +46,7 @@ class _DashboardState extends State<Dashboard> {
                           ],
                         );
                       } else if (snapshot.hasError) {
+                        //error checking
                         if (snapshot.error is SocketException) {
                           return const Text(
                               'Please make sure you are connected to the internet.');
@@ -62,6 +63,7 @@ class _DashboardState extends State<Dashboard> {
                       } else {
                         List<Country> countries =
                             snapshot.data as List<Country>;
+                        //for sorting
                         switch (_sortBy) {
                           case SortBy.nameCommon:
                             countries.sort(
@@ -81,6 +83,7 @@ class _DashboardState extends State<Dashboard> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
+                                //drop down menu to select sorting
                                 DropdownButton<SortBy>(
                                   value: _sortBy,
                                   onChanged: (value) {
@@ -118,16 +121,8 @@ class _DashboardState extends State<Dashboard> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        CountryCard(
-                                            flagLink: country.flagLink,
-                                            nameCommon: country.nameCommon,
-                                            nameOfficial: country.nameOfficial,
-                                            capital: country.capital,
-                                            region: country.region,
-                                            languageNno: country.languageNno,
-                                            languageNob: country.languageNob,
-                                            languageSmi: country.languageSmi,
-                                            population: country.population),
+                                        //calling display widget
+                                        CountryCard(country: country),
                                       ],
                                     );
                                   }),
